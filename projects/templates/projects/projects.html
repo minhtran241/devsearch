@@ -1,0 +1,24 @@
+{% extends 'main.html' %} {% block content %}
+
+<h1>Project</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Project</th>
+    <th>Votes</th>
+		<th>Ratio</th>
+		<th></th>
+		{% for project in projects %}
+		 <tr>
+			<td>{{project.id}}</td>
+			<td>{{project.title}}</td>
+			<td>{{project.vote}}</td>
+			<td>{{project.vote_ratio}}</td>
+			<td><a href="{% url 'project' project.id %}">view</a></td>
+		 </tr>
+  	{% endfor %}
+  </tr>
+</table>
+
+{% endblock content %}
