@@ -1,3 +1,4 @@
+from typing import Tuple
 import uuid
 from django.db import models
 
@@ -20,7 +21,7 @@ class Project(models.Model):
 
 
 class Review(models.Model):
-    VOTE_TYPE = (("up", "Up Vote"), ("down", "Down Vote"))
+    VOTE_TYPE: Tuple[Tuple[str]] = (("up", "Up Vote"), ("down", "Down Vote"))
     # owner =
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     body = models.TextField(null=True, blank=True)

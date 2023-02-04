@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Project Form</h1>
 
-<form method="POST">
+<form action="" method="POST">
 	{% csrf_token %}
 	{{form.as_p}}
 	<input type="submit">

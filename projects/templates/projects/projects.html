@@ -3,22 +3,25 @@
 <h1>Project</h1>
 
 <table>
-  <tr>
-    <th>ID</th>
-    <th>Project</th>
-    <th>Votes</th>
+	<tr>
+		<th>ID</th>
+		<th>Project</th>
+		<th>Votes</th>
 		<th>Ratio</th>
 		<th></th>
+		<th></th>
 		{% for project in projects %}
-		 <tr>
-			<td>{{project.id}}</td>
-			<td>{{project.title}}</td>
-			<td>{{project.vote}}</td>
-			<td>{{project.vote_ratio}}</td>
-			<td><a href="{% url 'project' project.id %}">view</a></td>
-		 </tr>
-  	{% endfor %}
-  </tr>
+	<tr>
+		<td>{{project.id}}</td>
+		<td>{{project.title}}</td>
+		<td>{{project.vote}}</td>
+		<td>{{project.vote_ratio}}</td>
+		<td><a href="{% url 'update-project' project.id %}">Edit</a></td>
+		<td><a href="{% url 'delete-project' project.id %}">Delete</a></td>
+		<td><a href="{% url 'project' project.id %}">View</a></td>
+	</tr>
+	{% endfor %}
+	</tr>
 </table>
 
 {% endblock content %}
