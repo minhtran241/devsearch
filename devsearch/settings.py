@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-7ts1#vq-7k%f(yszyiu08cus**1lbl)xq6ns4j-i6l#ybbkmhg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -121,6 +122,7 @@ MEDIA_URL = "images/"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_ROOT = BASE_DIR / "static/images"
 
 # Default primary key field type
