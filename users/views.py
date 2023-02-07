@@ -1,7 +1,41 @@
 from typing import Mapping, Any
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 from users.models import Profile
+
+
+def login_user(request):
+    if request.user.is_authenticated:
+        return redirect(to="profiles")
+    if request.method == "POST":
+        username: str = request.POST["username"]
+        password: str = request.POST["password"]
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.error(
+                request=request,
+                message="This username is not registered.",
+            )
+        user = authenticate(request=request, username=username, password=password)
+        if user:
+            login(request=request, user=user)
+            return redirect(to="profiles")
+        else:
+            messages.error(request=request, message="Incorrect username or password.")
+    return render(request=request, template_name="users/login_register.html")
+
+
+def logout_user(request):
+    logout(request=request)
+    messages.info(
+        request=request,
+        message="Sign out successfully!",
+    )
+    return redirect(to="login")
 
 
 def profiles(request):

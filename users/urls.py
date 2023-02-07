@@ -5,4 +5,6 @@ from users import views
 urlpatterns: List[URLPattern] = [
     path(route="", view=views.profiles, name="profiles"),
     path(route="profile/<str:pk>/", view=views.profile, name="profile"),
+    path(route="login/", view=views.login_user, name="login"),
+    path(route="logout/", view=views.logout_user, name="logout"),
 ]

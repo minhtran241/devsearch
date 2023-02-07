@@ -1,6 +1,6 @@
 from typing import Mapping, Any
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from projects.models import Project
 from projects.forms import ProjectForm
@@ -24,6 +24,7 @@ def project(request, pk):
     )
 
 
+@login_required(login_url="login")
 def create_project(request):
     form = ProjectForm()
     if request.method == "POST":
@@ -37,6 +38,7 @@ def create_project(request):
     )
 
 
+@login_required(login_url="login")
 def update_project(request, pk):
     project = Project.objects.get(id=pk)
     form = ProjectForm(instance=project)
@@ -51,6 +53,7 @@ def update_project(request, pk):
     )
 
 
+@login_required(login_url="login")
 def delete_project(request, pk):
     project = Project.objects.get(id=pk)
     if request.method == "POST":
