@@ -36,7 +36,6 @@ def register_user(request):
 
 def login_user(request):
     page: str = "login"
-    context: Mapping[str, Any] = {"page": page}
     if request.user.is_authenticated:
         return redirect(to="profiles")
     if request.method == "POST":
@@ -55,6 +54,7 @@ def login_user(request):
             return redirect(to="profiles")
         else:
             messages.error(request=request, message="Incorrect username or password.")
+    context: Mapping[str, Any] = {"page": page}
     return render(
         request=request, template_name="users/login_register.html", context=context
     )

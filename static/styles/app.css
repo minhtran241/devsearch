@@ -124,17 +124,26 @@ img {
     transform-origin: 0 0;
   }
 
-  .header__nav input[type='checkbox']:checked + .toggle-menu > .toggle-menu__lines::before {
+  .header__nav
+    input[type='checkbox']:checked
+    + .toggle-menu
+    > .toggle-menu__lines::before {
     margin-left: 3px;
     transform: rotate(45deg) scaleX(1.2) translateX(-2px) translateY(-4px);
     visibility: visible;
   }
 
-  .header__nav input[type='checkbox']:checked + .toggle-menu > .toggle-menu__lines {
+  .header__nav
+    input[type='checkbox']:checked
+    + .toggle-menu
+    > .toggle-menu__lines {
     visibility: hidden;
   }
 
-  .header__nav input[type='checkbox']:checked + .toggle-menu > .toggle-menu__lines::after {
+  .header__nav
+    input[type='checkbox']:checked
+    + .toggle-menu
+    > .toggle-menu__lines::after {
     transform: rotate(-45deg) scaleX(1.2) translateX(-2px) translateY(3px);
     visibility: visible;
   }
@@ -464,14 +473,14 @@ img {
   margin-bottom: 3rem;
 }
 
-.project__author{
+.project__author {
   font-size: 1.4rem;
   font-style: italic;
 }
 
-.project--rating{
+.project--rating {
   margin-bottom: 1.6em;
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
 
 .singleProject__subtitle {
@@ -613,7 +622,7 @@ img {
   object-fit: contain;
 }
 
-.settings__tableInfo{
+.settings__tableInfo {
   width: 100%;
 }
 
@@ -825,7 +834,6 @@ img {
 .backButton i {
   font-size: 1.8rem;
 }
-
 
 /*=======================
   Form Page
