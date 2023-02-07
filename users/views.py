@@ -1,4 +1,4 @@
-from typing import Mapping, Any
+from typing import List, Mapping, Any
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
@@ -15,8 +15,10 @@ def register_user(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.first_name = user.first_name.strip().capitalize()
-            user.last_name = user.last_name.strip().capitalize()
+            name_splitted: List[str] = user.first_name.split(" ")
+            user.first_name = name_splitted[0].strip().capitalize()
+            if len(name_splitted) > 1:
+                user.last_name = name_splitted[1].strip().capitalize()
             user.username = user.username.strip().lower()
             user.save()
             messages.success(
