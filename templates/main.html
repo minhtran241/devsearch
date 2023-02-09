@@ -9,16 +9,17 @@
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="{% static 'images/icon.svg' %}" type="image/x-icon" />
-	<!-- Icon - IconMonster -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-		integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1 w=="
+	<!-- Icon - FontAwesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+		integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<!-- Mumble UI -->
 	<link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" />
 	<!-- Dev Search UI -->
 	<link rel="stylesheet" href="{% static 'styles/app.css' %}" />
 
-	<script src="{% static 'uikit/app.js' %}"></script>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 
 	<title>DevSearch - Connect with Developers!</title>
 </head>
@@ -37,7 +38,8 @@
 	{% endif %}
 	{% block content %}
 	{% endblock content %}
+	<script src="{% static 'uikit/app.js' %}"></script>
+	<!-- <script src="{% static 'js/main.js' %}"></script> -->
 </body>
-<!-- <script src="{% static 'js/main.js' %}"></script> -->
 
 </html>

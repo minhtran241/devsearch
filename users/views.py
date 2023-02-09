@@ -3,9 +3,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from users.models import Profile
-from users.forms import CustomUserCreationForm
+from users.forms import CustomUserCreationForm, ProfileForm, SkillForm
 from users.utils import searchProfiles
 
 
@@ -23,13 +24,13 @@ def register_user(request):
             user.username = user.username.strip().lower()
             user.save()
             messages.success(
-                request=request, message="Account was created successfully!"
+                request=request, message="Your account was created successfully!"
             )
             login(request=request, user=user)
-            return redirect(to="profiles")
+            return redirect(to="edit-account")
         else:
             messages.error(
-                request=request, message="An error has occurred during registration"
+                request=request, message="An error has occurred during registration."
             )
     context: Mapping[str, Any] = {"page": page, "form": form}
     return render(
@@ -63,6 +64,7 @@ def login_user(request):
     )
 
 
+@login_required(login_url="login")
 def logout_user(request):
     logout(request=request)
     messages.success(
@@ -70,6 +72,13 @@ def logout_user(request):
         message="Sign out successfully!",
     )
     return redirect(to="login")
+
+
+@login_required(login_url="login")
+def account_user(request):
+    profile = request.user.profile
+    context: Mapping[str:Any] = {"profile": profile}
+    return render(request=request, template_name="users/account.html", context=context)
 
 
 def profiles(request):
@@ -80,7 +89,7 @@ def profiles(request):
 
 def profile(request, pk):
     profile = Profile.objects.get(id=pk)
-    top_skills = profile.skill_set.exclude(description__exact="")[:5]
+    top_skills = profile.skill_set.exclude(description__exact="")
     other_skills = profile.skill_set.filter(description="")
     context: Mapping[str, Any] = {
         "profile": profile,
@@ -88,3 +97,80 @@ def profile(request, pk):
         "otherSkills": other_skills,
     }
     return render(request=request, template_name="users/profile.html", context=context)
+
+
+@login_required(login_url="login")
+def update_account(request):
+    profile = request.user.profile
+    form = ProfileForm(instance=profile)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request=request,
+                message="Your information updated successfully!",
+            )
+            return redirect(to="account")
+    context: Mapping[str:Any] = {"form": form}
+    return render(
+        request=request, template_name="users/profile_form.html", context=context
+    )
+
+
+@login_required(login_url="login")
+def create_skill(request):
+    profile = request.user.profile
+    form = SkillForm()
+    if request.method == "POST":
+        form = SkillForm(request.POST)
+        if form.is_valid():
+            skill = form.save(commit=False)
+            skill.owner = profile
+            skill.save()
+            messages.success(
+                request=request,
+                message="Skill added successfully!",
+            )
+            return redirect(to="account")
+    context: Mapping[str:Any] = {"form": form}
+    return render(
+        request=request, template_name="users/skill_form.html", context=context
+    )
+
+
+@login_required(login_url="login")
+def update_skill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+    form = SkillForm(instance=skill)
+    if request.method == "POST":
+        form = SkillForm(request.POST, instance=skill)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request=request,
+                message="Skill updated successfully!",
+            )
+            return redirect(to="account")
+    context: Mapping[str:Any] = {"form": form}
+    return render(
+        request=request, template_name="users/skill_form.html", context=context
+    )
+
+
+@login_required(login_url="login")
+def delete_skill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+    if request.method == "POST":
+        skill.delete()
+        messages.success(
+            request=request,
+            message="Skill deleted successfully!",
+        )
+        return redirect("account")
+    context: Mapping[str, Any] = {"object": skill}
+    return render(
+        request=request, template_name="delete_template.html", context=context
+    )
