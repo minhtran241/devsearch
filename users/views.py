@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 from users.models import Profile
 from users.forms import CustomUserCreationForm
+from users.utils import searchProfiles
 
 
 def register_user(request):
@@ -72,8 +73,8 @@ def logout_user(request):
 
 
 def profiles(request):
-    profiles = Profile.objects.all()
-    context: Mapping[str, Any] = {"profiles": profiles}
+    profiles, search_query = searchProfiles(request=request)
+    context: Mapping[str, Any] = {"profiles": profiles, "search_query": search_query}
     return render(request=request, template_name="users/profiles.html", context=context)
 
 

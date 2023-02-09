@@ -692,7 +692,7 @@ img {
 }
 
 .auth__header p {
-  font-weight: 200;
+  font-weight: 300;
   font-size: 1.8rem;
   margin-bottom: 2rem;
 }
@@ -719,8 +719,9 @@ img {
 }
 
 .auth .auth__alternative a {
-  font-size: 1.6rem;
-  font-weight: 200;
+  font-size: 1.4rem;
+  font-weight: 300;
+  text-decoration: underline;
 }
 
 /*=======================

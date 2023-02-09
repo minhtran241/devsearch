@@ -4,11 +4,12 @@ from django.contrib.auth.decorators import login_required
 
 from projects.models import Project
 from projects.forms import ProjectForm
+from projects.utils import searchProjects
 
 
 def projects(request):
-    projects = Project.objects.all()
-    context: Mapping[str, Any] = {"projects": projects}
+    projects, search_query = searchProjects(request=request)
+    context: Mapping[str, Any] = {"projects": projects, "search_query": search_query}
     return render(
         request=request, template_name="projects/projects.html", context=context
     )
