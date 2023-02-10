@@ -5,12 +5,20 @@ from django.contrib.auth.decorators import login_required
 
 from projects.models import Project
 from projects.forms import ProjectForm
-from projects.utils import searchProjects
+from projects.utils import searchProjects, paginateProjects
 
 
 def projects(request):
     projects, search_query = searchProjects(request=request)
-    context: Mapping[str, Any] = {"projects": projects, "search_query": search_query}
+    results: int = 9  # how many results per page
+    custom_range, projects = paginateProjects(
+        request=request, projects=projects, results=results
+    )
+    context: Mapping[str, Any] = {
+        "projects": projects,
+        "search_query": search_query,
+        "custom_range": custom_range,
+    }
     return render(
         request=request, template_name="projects/projects.html", context=context
     )
