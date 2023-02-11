@@ -35,10 +35,18 @@
 								<img class="avatar avatar--md" src="{{profile.profile_image.url}}" alt="image" />
 								<div class="dev__meta">
 									<h3>{{profile.name}}</h3>
-									<h5>{{profile.short_intro|slice:"60"}}</h5>
+									{% if profile.short_intro|length > 60 %}
+									<h5>{{profile.short_intro|slice:"60"}}...</h5>
+									{% else %}
+									<h5>{{profile.short_intro}}</h5>
+									{% endif %}
 								</div>
 							</div>
-							<p class="dev__info">{{profile.bio|slice:"150"}}</p>
+							{% if profile.bio|length > 150 %}
+							<p class="dev__info">{{profile.bio|slice:"150"}}...</p>
+							{% else %}
+							<p class="dev__info">{{profile.bio}}</p>
+							{% endif %}
 							<div class="dev__skills">
 								{% for skill in profile.skill_set.all|slice:"5" %}
 								<span class="tag tag--pill tag--main">

@@ -27,7 +27,7 @@ def register_user(request):
                 request=request, message="Your account was created successfully!"
             )
             login(request=request, user=user)
-            return redirect(to="edit-account")
+            return redirect(to="update-account")
         else:
             messages.error(
                 request=request, message="An error has occurred during registration."
@@ -55,7 +55,7 @@ def login_user(request):
         user = authenticate(request=request, username=username, password=password)
         if user:
             login(request=request, user=user)
-            return redirect(to="profiles")
+            return redirect(request.GET['next'] if 'next' in request.GET else 'account')
         else:
             messages.error(request=request, message="Incorrect username or password.")
     context: Mapping[str, Any] = {"page": page}
