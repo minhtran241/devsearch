@@ -1,12 +1,13 @@
 from typing import List, Mapping, Any
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from users.models import Profile
-from users.forms import CustomUserCreationForm, ProfileForm, SkillForm
+from users.models import Profile, Message
+from users.forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
 from users.utils import searchProfiles, paginateProfiles
 
 
@@ -55,7 +56,7 @@ def login_user(request):
         user = authenticate(request=request, username=username, password=password)
         if user:
             login(request=request, user=user)
-            return redirect(request.GET['next'] if 'next' in request.GET else 'account')
+            return redirect(request.GET["next"] if "next" in request.GET else "account")
         else:
             messages.error(request=request, message="Incorrect username or password.")
     context: Mapping[str, Any] = {"page": page}
@@ -181,4 +182,56 @@ def delete_skill(request, pk):
     context: Mapping[str, Any] = {"object": skill}
     return render(
         request=request, template_name="delete_template.html", context=context
+    )
+
+
+@login_required(login_url="login")
+def inbox(request):
+    profile = request.user.profile
+    messages_list = profile.messages.all()
+    unread_count: int | str = messages_list.filter(is_read=False).count()
+    context: Mapping[str, Any] = {
+        "messagesList": messages_list,
+        "unreadCount": unread_count,
+    }
+    return render(request=request, template_name="users/inbox.html", context=context)
+
+
+@login_required(login_url="login")
+def view_message(request, pk):
+    profile = request.user.profile
+    message = profile.messages.get(id=pk)
+    if message.is_read is False:
+        message.date_read = datetime.now()
+        message.is_read = True
+        message.save()
+    context: Mapping[str, Any] = {"message": message}
+    return render(request=request, template_name="users/message.html", context=context)
+
+
+def send_message(request, pk):
+    recipient = Profile.objects.get(id=pk)
+    form = MessageForm()
+    if request.method == "POST":
+        try:
+            sender = request.user.profile
+        except:
+            sender = None
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = sender
+            message.recipient = recipient
+            if sender:
+                message.sender_name = sender.name
+                message.email = sender.email
+            message.save()
+            messages.success(
+                request=request,
+                message="Message sent successfully!",
+            )
+            return redirect(to='profile', pk = recipient.id)
+    context: Mapping[str, Any] = {"recipient": recipient, "form": form}
+    return render(
+        request=request, template_name="users/message_form.html", context=context
     )

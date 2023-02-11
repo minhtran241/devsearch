@@ -26,7 +26,11 @@
 			</div>
 			<div class="column column--2of3">
 				<img class="singleProject__preview" src="{{project.featured_image.url}}" alt="portfolio thumbnail" />
+				{% if request.user.is_authenticated and request.user.profile == project.owner %}
+				<a href="{% url 'account' %}" class="singleProject__developer">By {{project.owner.name}}</a>
+				{% else %}
 				<a href="{% url 'profile' project.owner.id %}" class="singleProject__developer">By {{project.owner.name}}</a>
+				{% endif %}
 				<h2 class="singleProject__title">{{project.title}}</h2>
 				<h3 class="singleProject__subtitle">About the Project</h3>
 				<div class="singleProject__info">
@@ -34,7 +38,7 @@
 				</div>
 
 				<div class="comments">
-					<h3 class="singleProject__subtitle">Feedback</h3>
+					<h3 class="singleProject__subtitle">Feedback&nbsp;&nbsp;<i class="fa-solid fa-comment"></i></h3>
 					<h5 class="project--rating">
 						{{project.vote_ratio}} Positive Feedback ({{project.vote_total}} Vote{{project.vote_total|pluralize:"s"}})
 					</h5>
@@ -55,11 +59,19 @@
 						{% for review in project.review_set.all %}
 						{% if review.body %}
 						<div class="comment">
+							{% if request.user.is_authenticated and request.user.profile == review.owner %}
+							<a href="{% url 'account' %}">
+							{% else %}
 							<a href="{% url 'profile' review.owner.id  %}">
+							{% endif %}
 								<img class="avatar avatar--md" src="{{review.owner.profile_image.url}}" alt="user" />
 							</a>
 							<div class="comment__details">
+								{% if request.user.is_authenticated and request.user.profile == review.owner %}
+								<a href="{% url 'account' %}" class="comment__author">{{review.owner.name}}</a>
+								{% else %}
 								<a href="{% url 'profile' review.owner.id %}" class="comment__author">{{review.owner.name}}</a>
+								{% endif %}
 								<p class="comment__info">{{review.body|linebreaksbr}}</p>
 							</div>
 						</div>

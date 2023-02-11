@@ -15,7 +15,8 @@
   --color-success-bg: #def8e8;
   --color-error: #fc4b0b;
   --color-error-bg: #fff2ee;
-  --font-base: 'Poppins', arial, helvetica, 'Segoe UI', roboto, ubuntu, sans-serif;
+  --font-base: 'Roboto', arial, helvetica, 'Segoe UI', roboto, ubuntu,
+    sans-serif;
   --font-monospace: 'Fira Code', 'Courier New', courier, monospace;
   --font-regular: 300;
   --font-medium: 500;

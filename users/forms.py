@@ -2,7 +2,7 @@ from typing import List
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from users.models import Profile, Skill
+from users.models import Profile, Skill, Message
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -54,6 +54,19 @@ class SkillForm(ModelForm):
 
     def __init__(self, *arg, **kwargs):
         super(SkillForm, self).__init__(*arg, **kwargs)
+
+        for _, field in self.fields.items():
+            field.widget.attrs.update({"class": "input"})
+
+
+class MessageForm(ModelForm):
+    class Meta:
+        model = Message
+        fields = ["sender_name", "email", "subject", "body"]
+        labels = {"sender_name": "Your name"}
+
+    def __init__(self, *arg, **kwargs):
+        super(MessageForm, self).__init__(*arg, **kwargs)
 
         for _, field in self.fields.items():
             field.widget.attrs.update({"class": "input"})

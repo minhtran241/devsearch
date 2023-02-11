@@ -13,4 +13,7 @@ urlpatterns: List[URLPattern] = [
     path(route="create-skill/", view=views.create_skill, name="create-skill"),
     path(route="update-skill/<str:pk>/", view=views.update_skill, name="update-skill"),
     path(route="delete-skill/<str:pk>/", view=views.delete_skill, name="delete-skill"),
+		path(route='inbox/', view=views.inbox, name='inbox'),
+		path(route='message/<str:pk>/', view=views.view_message, name='message'),
+		path(route='send-message/<str:pk>/', view=views.send_message, name='send-message')
 ]
