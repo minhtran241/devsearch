@@ -1,4 +1,5 @@
 from typing import Mapping, Any
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -8,7 +9,7 @@ from projects.forms import ProjectForm, ReviewForm
 from projects.utils import searchProjects, paginateProjects
 
 
-def projects(request):
+def projects(request: HttpRequest) -> HttpResponse:
     projects, search_query = searchProjects(request=request)
     results: int = 9  # how many results per page
     custom_range, projects = paginateProjects(
@@ -24,7 +25,7 @@ def projects(request):
     )
 
 
-def project(request, pk):
+def project(request: HttpRequest, pk) -> HttpResponse:
     project = Project.objects.get(id=pk)
     form = ReviewForm()
     if request.method == "POST":
@@ -50,7 +51,7 @@ def project(request, pk):
 
 
 @login_required(login_url="login")
-def create_project(request):
+def create_project(request: HttpRequest) -> HttpResponse:
     profile = request.user.profile
     form = ProjectForm()
     if request.method == "POST":
@@ -71,7 +72,7 @@ def create_project(request):
 
 
 @login_required(login_url="login")
-def update_project(request, pk):
+def update_project(request: HttpRequest, pk) -> HttpResponse:
     profile = request.user.profile
     project = profile.project_set.get(id=pk)
     form = ProjectForm(instance=project)
@@ -91,7 +92,7 @@ def update_project(request, pk):
 
 
 @login_required(login_url="login")
-def delete_project(request, pk):
+def delete_project(request: HttpRequest, pk) -> HttpResponse:
     profile = request.user.profile
     project = profile.project_set.get(id=pk)
     if request.method == "POST":

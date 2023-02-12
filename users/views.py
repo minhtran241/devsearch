@@ -1,5 +1,6 @@
 from typing import List, Mapping, Any
 from datetime import datetime
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
@@ -11,7 +12,7 @@ from users.forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageF
 from users.utils import searchProfiles, paginateProfiles
 
 
-def register_user(request):
+def register_user(request: HttpRequest) -> HttpResponse:
     page: str = "register"
     form = CustomUserCreationForm()
     if request.method == "POST":
@@ -39,7 +40,7 @@ def register_user(request):
     )
 
 
-def login_user(request):
+def login_user(request: HttpRequest) -> HttpResponse:
     page: str = "login"
     if request.user.is_authenticated:
         return redirect(to="profiles")
@@ -66,7 +67,7 @@ def login_user(request):
 
 
 @login_required(login_url="login")
-def logout_user(request):
+def logout_user(request: HttpRequest) -> HttpResponse:
     logout(request=request)
     messages.success(
         request=request,
@@ -76,13 +77,13 @@ def logout_user(request):
 
 
 @login_required(login_url="login")
-def account_user(request):
+def account_user(request: HttpRequest) -> HttpResponse:
     profile = request.user.profile
     context: Mapping[str:Any] = {"profile": profile}
     return render(request=request, template_name="users/account.html", context=context)
 
 
-def profiles(request):
+def profiles(request: HttpRequest) -> HttpResponse:
     profiles, search_query = searchProfiles(request=request)
     results: int = 9
     custom_range, profiles = paginateProfiles(
@@ -96,7 +97,7 @@ def profiles(request):
     return render(request=request, template_name="users/profiles.html", context=context)
 
 
-def profile(request, pk):
+def profile(request: HttpRequest, pk) -> HttpResponse:
     profile = Profile.objects.get(id=pk)
     top_skills = profile.skill_set.exclude(description__exact="")
     other_skills = profile.skill_set.filter(description="")
@@ -109,7 +110,7 @@ def profile(request, pk):
 
 
 @login_required(login_url="login")
-def update_account(request):
+def update_account(request: HttpRequest) -> HttpResponse:
     profile = request.user.profile
     form = ProfileForm(instance=profile)
     if request.method == "POST":
@@ -128,7 +129,7 @@ def update_account(request):
 
 
 @login_required(login_url="login")
-def create_skill(request):
+def create_skill(request: HttpRequest) -> HttpResponse:
     profile = request.user.profile
     form = SkillForm()
     if request.method == "POST":
@@ -149,7 +150,7 @@ def create_skill(request):
 
 
 @login_required(login_url="login")
-def update_skill(request, pk):
+def update_skill(request: HttpRequest, pk) -> HttpResponse:
     profile = request.user.profile
     skill = profile.skill_set.get(id=pk)
     form = SkillForm(instance=skill)
@@ -169,7 +170,7 @@ def update_skill(request, pk):
 
 
 @login_required(login_url="login")
-def delete_skill(request, pk):
+def delete_skill(request: HttpRequest, pk) -> HttpResponse:
     profile = request.user.profile
     skill = profile.skill_set.get(id=pk)
     if request.method == "POST":
@@ -186,7 +187,7 @@ def delete_skill(request, pk):
 
 
 @login_required(login_url="login")
-def inbox(request):
+def inbox(request: HttpRequest) -> HttpResponse:
     profile = request.user.profile
     messages_list = profile.messages.all()
     unread_count: int | str = messages_list.filter(is_read=False).count()
@@ -198,7 +199,7 @@ def inbox(request):
 
 
 @login_required(login_url="login")
-def view_message(request, pk):
+def view_message(request: HttpRequest, pk) -> HttpResponse:
     profile = request.user.profile
     message = profile.messages.get(id=pk)
     if message.is_read is False:
@@ -209,7 +210,7 @@ def view_message(request, pk):
     return render(request=request, template_name="users/message.html", context=context)
 
 
-def send_message(request, pk):
+def send_message(request: HttpRequest, pk) -> HttpResponse:
     recipient = Profile.objects.get(id=pk)
     form = MessageForm()
     if request.method == "POST":
@@ -230,7 +231,7 @@ def send_message(request, pk):
                 request=request,
                 message="Message sent successfully!",
             )
-            return redirect(to='profile', pk = recipient.id)
+            return redirect(to="profile", pk=recipient.id)
     context: Mapping[str, Any] = {"recipient": recipient, "form": form}
     return render(
         request=request, template_name="users/message_form.html", context=context
