@@ -96,7 +96,7 @@ img {
     font-size: 0;
     width: 5rem;
     height: 5rem;
-    border-radius: 50%;
+    border-radius: 0.2rem;
   }
 
   .toggle-menu__lines,
@@ -169,7 +169,7 @@ img {
 
   .header__menuItem a:hover {
     padding: 1rem 3rem;
-    border-radius: 3px;
+    border-radius: 0.2rem;
     background: var(--color-sub-light);
   }
 }
@@ -458,7 +458,7 @@ img {
   object-fit: cover;
   object-position: top center;
   margin-bottom: 3rem;
-  border-radius: 0.7rem;
+  border-radius: 0.2rem;
 }
 
 .singleProject__developer {
@@ -829,7 +829,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 0.2rem;
 }
 
 .backButton i {
@@ -845,7 +845,7 @@ img {
   background: var(--color-white);
   padding: 3.5rem 5rem;
   border: 2px solid var(--color-light);
-  border-radius: 0.7rem;
+  border-radius: 0.2rem;
 }
 
 .formPage .formWrapper__subject {
