@@ -799,7 +799,7 @@ img {
   background: var(--color-white);
   padding: 3.5rem 5rem;
   border: 2px solid var(--color-light);
-  border-radius: 0.7rem;
+  border-radius: 0.2rem;
 }
 
 .messagePage .message__subject {
