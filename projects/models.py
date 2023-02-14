@@ -6,7 +6,7 @@ from users.models import Profile
 
 class Project(models.Model):
     owner = models.ForeignKey(
-        to=Profile, null=True, blank=True, on_delete=models.SET_NULL
+        to=Profile, null=True, blank=True, on_delete=models.CASCADE
     )
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
@@ -36,6 +36,16 @@ class Project(models.Model):
         self.vote_total = total_votes
         self.vote_ratio = ratio
         self.save()
+
+    @property
+    def imageURL(self):
+      try:
+        url: str = self.featured_image.url   
+      except:
+        setattr(self, "featured_image", 'default.jpg')
+        self.save()
+        url: str = self.featured_image.url
+      return url
 
     def __str__(self) -> str:
         return self.title

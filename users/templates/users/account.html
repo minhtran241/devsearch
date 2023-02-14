@@ -7,9 +7,8 @@
 			<div class="column column--1of3">
 				<div class="card text-center">
 					<div class="card__body dev">
-						<a class="tag tag--pill tag--main settings__btn" href="{% url 'update-account' %}"><i
-								class="fa-solid fa-pen-to-square"></i></a>
-						<img class="avatar avatar--xl dev__avatar" src="{{profile.profile_image.url}}" />
+						<a class="tag tag--pill tag--main settings__btn" href="{% url 'update-account' %}"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
+						<img class="avatar avatar--xl dev__avatar" src="{{profile.imageURL}}" />
 						<h2 class="dev__name">{{profile.name}}</h2>
 						<p class="dev__title">{{profile.short_intro}}</p>
 						<p class="dev__location">Based in {{profile.location}}</p>
@@ -88,8 +87,7 @@
 							{% endif %}
 						</td>
 						<td class="settings__tableActions">
-							<a class="tag tag--pill tag--main settings__btn" href="{% url 'update-skill' skill.id %}"><i
-									class="fa-solid fa-pen-to-square"></i></a>
+							<a class="tag tag--pill tag--main settings__btn" href="{% url 'update-skill' skill.id %}"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
 							<a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-skill' skill.id %}?next=/account"><i
 									class="fa-solid fa-delete-left"></i></i></a>
 						</td>
@@ -107,7 +105,7 @@
 					{% for project in profile.project_set.all %}
 					<tr>
 						<td class="settings__thumbnail">
-							<a href="{% url 'project' project.id %}"><img src="{{project.featured_image.url}}"
+							<a href="{% url 'project' project.id %}"><img src="{{project.imageURL}}"
 									alt="Project Thumbnail" /></a>
 						</td>
 						<td class="settings__tableInfo">
@@ -123,8 +121,7 @@
 							{% endif %}
 						</td>
 						<td class="settings__tableActions">
-							<a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}"><i
-									class="fa-solid fa-pen-to-square"></i></a>
+							<a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
 							<a class="tag tag--pill tag--main settings__btn"
 								href="{% url 'delete-project' project.id %}?next=/account"><i
 									class="fa-solid fa-delete-left"></i></i></a>

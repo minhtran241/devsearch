@@ -36,7 +36,7 @@
 						<a href="{% url 'profile' profile.id %}" class="card__body">
 						{% endif %}
 							<div class="dev__profile">
-								<img class="avatar avatar--md" src="{{profile.profile_image.url}}" alt="image" />
+								<img class="avatar avatar--md" src="{{profile.imageURL}}" alt="image" />
 								<div class="dev__meta">
 									<h3>{{profile.name}}</h3>
 									{% if profile.short_intro|length > 60 %}

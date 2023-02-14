@@ -12,7 +12,6 @@ class ProjectForm(forms.ModelForm):
             "description",
             "demo_link",
             "source_link",
-            "tags",
         ]
         widgets: Mapping[str, Any] = {"tags": forms.CheckboxSelectMultiple()}
 

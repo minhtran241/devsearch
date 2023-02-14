@@ -18,3 +18,14 @@ if (searchForm) {
     });
   }
 }
+
+// REMOVE TAGS WHEN UPDATE PROJECT (PROJECT FORM)
+let tags = document.getElementsByClassName('project-tag');
+
+for (const tag of tags) {
+  tag.addEventListener('click', (e) => {
+    let tagId = e.target.dataset.tag;
+    let projectId = e.target.dataset.project;
+		
+  });
+}

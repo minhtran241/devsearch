@@ -28,6 +28,20 @@ class Profile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid4, unique=True, primary_key=True, editable=False)
 
+    class Meta:
+        ordering = ["created"]
+
+    @property
+    def imageURL(self):
+		
+        try:
+            url: str = self.profile_image.url
+        except:
+            setattr(self, 'profile_image', "profiles/user-default.png")
+            self.save()
+            url: str = self.profile_image.url
+        return url
+
     def __str__(self) -> str:
         return str(self.user.username)
 
@@ -69,4 +83,4 @@ class Message(models.Model):
         return self.subject
 
     class Meta:
-        ordering = ["is_read", '-created']
+        ordering = ["is_read", "-created"]
