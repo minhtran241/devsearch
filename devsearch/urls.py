@@ -26,6 +26,7 @@ urlpatterns: List[URLPattern] = [
     path("admin/", admin.site.urls),
     path("projects/", include("projects.urls")),
     path("", include("users.urls")),
+		path("api/", include("api.urls")),
     path(
         route="password_reset/",
         view=auth_views.PasswordResetView.as_view(template_name="password_reset.html"),

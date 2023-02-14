@@ -85,7 +85,7 @@ def account_user(request: HttpRequest) -> HttpResponse:
 
 def profiles(request: HttpRequest) -> HttpResponse:
     profiles, search_query = searchProfiles(request=request)
-    results: int = 9
+    results: int = 6
     custom_range, profiles = paginateProfiles(
         request=request, profiles=profiles, results=results
     )
