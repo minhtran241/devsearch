@@ -27,7 +27,7 @@ def getProjects(request: HttpRequest) -> Response:
 
 
 @api_view(http_method_names=["GET"])
-def getProject(request: HttpRequest, pk: str):
+def getProject(request: HttpRequest, pk: str) -> Response:
     project = Project.objects.get(id=pk)
     serializer = ProjectSerializer(instance=project, many=False)
     return Response(data=serializer.data)
