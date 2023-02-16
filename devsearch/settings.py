@@ -35,7 +35,7 @@ SECRET_KEY = env("SECRET_KEY")
 # False if not in os.environ because of casting above
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "devsearch-application.heroku.com"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "devsearch-application.herokuapp.com"]
 
 
 # Application definition
