@@ -26,4 +26,5 @@ urlpatterns: List[URLPattern] = [
     path(route="projects/", view=views.getProjects),
     path(route="projects/<str:pk>/", view=views.getProject),
     path(route="projects/<str:pk>/vote/", view=views.projectVote),
+    path(route="remove-tag/", view=views.removeTag),
 ]

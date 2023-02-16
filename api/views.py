@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 
 from api.serializers import ProjectSerializer
-from projects.models import Project, Review
+from projects.models import Project, Review, Tag
 
 
 @api_view(http_method_names=["GET"])
@@ -47,3 +47,13 @@ def projectVote(request: HttpRequest, pk: str) -> Response:
     project.get_vote_count
     serializer = ProjectSerializer(instance=project, many=False)
     return Response(serializer.data)
+
+
+@api_view(http_method_names=["DELETE"])
+def removeTag(request: HttpRequest) -> Response:
+    tagId: str = request.data["tag"]
+    projectId: str = request.data["project"]
+    project = Project.objects.get(id=projectId)
+    tag = Tag.objects.get(id=tagId)
+    project.tags.remove(tag)
+    return Response({"status": "success"})
