@@ -4,9 +4,9 @@ let pageLinks = document.getElementsByClassName('page-link');
 
 const autoSubmitSearchForm = debounce(() => searchForm.submit());
 
-// searchForm.addEventListener('input', (e) => {
-//   autoSubmitSearchForm();
-// });
+searchForm.addEventListener('input', (e) => {
+  autoSubmitSearchForm();
+});
 function debounce(cb, delay = 500) {
   let timeout;
 
@@ -59,10 +59,8 @@ for (const tag of tags) {
 const popup = document.querySelector(".popupBox");
 const close = document.querySelector(".close");
 
-window.onload = function () {
-  setTimeout(() => {
-    popup.style.display = "block";
-  }, 3000);
+window.onload = () => {
+  popup.style.display = "block";
 };
 
 close.addEventListener("click", () => {

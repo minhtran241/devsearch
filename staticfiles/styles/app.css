@@ -865,6 +865,7 @@ footer {
   padding: 6px 16px;
   color: #e5e7eb;
   text-align: center;
+	opacity: .9;
 }
 
 footer span a {
@@ -895,7 +896,7 @@ footer span a:hover {
   width: 600px;
   height: 400px;
   background: #fff;
-  border-radius: 30px;
+  border-radius: 0.2rem;
   display: flex;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -917,7 +918,7 @@ footer span a:hover {
   position: absolute;
   width: 250px;
   height: 250px;
-  background: #e7ffe0;
+  /* background: #e5e7eb; */
   border-radius: 50%;
 }
 
@@ -937,7 +938,7 @@ footer span a:hover {
 }
 
 .popupBox__title {
-  color: #333;
+  color: var(--color-sub-light);
   line-height: 1em;
   font-weight: 300;
   font-size: 2em;
@@ -945,12 +946,12 @@ footer span a:hover {
 
 .popupBox__titleTwo {
   font-size: 4em;
-  color: #887fff;
+  color: var(--color-sub-light);
   line-height: 1em;
 }
 
 .popupBox__titleTwo span {
-  color: #333;
+  color: var(--color-sub-light);
   font-size: 0.75em;
   text-transform: uppercase;
 }
@@ -962,11 +963,11 @@ footer span a:hover {
 .popupBox__btn {
   display: inline-block;
   padding: 10px 20px;
-  background: #887fff;
+  background: var(--color-sub-light);
   text-decoration: none;
-  color: #000;
+  color: white;
   margin-top: 15px;
-  border-radius: 10px;
+  border-radius: 0.2rem;
 }
 
 .close {
@@ -981,7 +982,8 @@ footer span a:hover {
   background-position: center;
   z-index: 10;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 0.2rem;
+	color: var(--color-sub-light);
 }
 @media (max-width: 768px) {
   .popupBox__content {
@@ -1005,7 +1007,7 @@ footer span a:hover {
   .close {
     top: -50px;
     right: -10px;
-    background: #fff url(./img/close.png);
+    background: #fff url(https://www.pikpng.com/pngl/m/302-3024308_close-icon-png-x-png-icon-clipart.png);
     background-repeat: no-repeat;
     background-size: 10px;
     background-position: center;
@@ -1013,7 +1015,7 @@ footer span a:hover {
 }
 .credit a{
   text-decoration: none;
-  color: #887fff;
+  color: #51546e;
 }
 .credit {
     margin-top: 10px;
