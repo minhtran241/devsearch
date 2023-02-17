@@ -4,70 +4,31 @@ Sourcode and Resources for **devsearch**
 
 ## Installation
 
-* 1 - clone repo <https://github.com/minhtran241/devsearch>
-* 2 - create a virtual environment and activate
-  * - pip install virtualenv
-  * - virtualenv envname
-  * - envname\scripts\activate
-* 3 - cd into project "cd devsearch"
-* 4 - pip install -r requirements.txt
-* 5 - python manage.py runserver
+* Clone repo <https://github.com/minhtran241/devsearch>
+* Create a virtual environment and activate
 
-## Features
-
-* Share Projects
-* Message other developers
-* Rate others work
-* Search other developers
-
-## Tech Stack
-
-* Django
-* Postgres
-* Django REST Framework
-
-<!-- # Home Page
-<img src="./resources/images/Devsearch Home.jpg">  
-
-# Projects Page
-<img src="./resources/images/DevSearch Projects.jpg">  
-
-# Profile Page
-<img src="./resources/images/Devsearch Profile.jpg">  
-
-# User Inbox
-<img src="./resources/images/Devsearch Inbox.jpg">   -->
-
-## Set up & Migrate Database
-
-1. Go to the `setting.py` and change this lines up to your PostgreSQL account
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'devSearch',
-        'HOST': 'localhost',
-        'PORT': '5432',
-        'USER': 'postgres',
-        'PASSWORD': ENV['DB_PASS']
-    }
-}
+```
+pip install virtualenv
+virtualenv envname
+source envname/bin/activate
 ```
 
-2. Run the migrations
+* Install required modules
 
-```sh
-python manage.py migrate
+```
+pip install -r requirements.txt
 ```
 
-## Set up Email backend
+## Environment variables
 
-```python
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = ENV['EMAIL']
-EMAIL_HOST_PASSWORD = ENV['EMAIL_PASS']
-```
+The `.env.dist` file describes the mandatory variables for the application, and it can be committed to version control. This provides a useful reference and speeds up the on-boarding process for new team members, since the time to dig through the codebase to find out what has to be set up is reduced. 
+
+> **_NOTE:_** Please make sure that you have enough required variables in the `.env.dist` file and create your `.env` file before running the application.
+
+## Bugs and Issues
+
+Have a bug or an issue with this template? [Open a new issue](https://github.com/minhtran241/devsearch/issues) here on GitHub.
+
+## Copyright and License
+
+Code released under the [MIT](https://github.com/minhtran241/devsearch/blob/main/LICENSE) license.
