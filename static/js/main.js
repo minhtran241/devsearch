@@ -4,10 +4,11 @@ let pageLinks = document.getElementsByClassName('page-link');
 
 const autoSubmitSearchForm = debounce(() => searchForm.submit());
 
-searchForm.addEventListener('input', (e) => {
-  autoSubmitSearchForm();
-});
-function debounce(cb, delay = 500) {
+if (searchForm)
+  searchForm.addEventListener('input', (e) => {
+    autoSubmitSearchForm();
+  });
+function debounce(cb, delay = 300) {
   let timeout;
 
   return (...args) => {
@@ -56,13 +57,16 @@ for (const tag of tags) {
   });
 }
 
-const popup = document.querySelector(".popupBox");
-const close = document.querySelector(".close");
+const popup = document.querySelector('.popupBox');
+const close = document.querySelector('.close');
 
-window.onload = () => {
-  popup.style.display = "block";
-};
+if (localStorage.getItem('popup') != 'seen') {
+  window.onload = () => {
+    popup.style.display = 'block';
+  };
+}
 
-close.addEventListener("click", () => {
-  popup.style.display = "none";
+close.addEventListener('click', () => {
+  popup.style.display = 'none';
+  localStorage.setItem('popup', 'seen');
 });
