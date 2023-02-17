@@ -1,7 +1,5 @@
 # DevSearch
 
-Sourcode and Resources for **devsearch**
-
 ## Installation
 
 * Clone repo <https://github.com/minhtran241/devsearch>
