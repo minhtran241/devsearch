@@ -858,14 +858,14 @@ img {
 /* ------------------------------ Footer ------------------------------ */
 
 footer {
-  background: #111;
+  background: #2d2d39;
   padding: 6px 16px;
-  color: #888c8d;
+  color: #e5e7eb;
   text-align: center;
 }
 
 footer span a {
-  color: #1e3551;
+  color: #e5e7eb;
   text-decoration: none;
 }
 
