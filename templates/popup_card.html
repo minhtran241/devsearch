@@ -1,0 +1,20 @@
+{% load static %}
+<div class="popupBox">
+	<div class="popupBox__content">
+		<div class="close"></div>
+		<div class="popupBox__img">
+			<img src="{% static 'images/joinus.png' %}" alt="Join Us" />
+		</div>
+		<div class="popupBox__contentTwo">
+			<div>
+				<h3 class="popupBox__title">Great Opportunities</h3>
+				<h2 class="popupBox__titleTwo">80 <sup>%</sup><span> Hired</span></h2>
+				<p class="popupBox__description">
+					Show us your outstanding projects and &nbsp;&nbsp; get dream job right now!
+				</p>
+				<a href="{% url 'register' %}" class="popupBox__btn">Get Started</a>
+				<div class="credit">Developed by <a  href=https://minhtran.netlify.app/">Minh Tran.</a></div>
+			</div>
+		</div> 
+	</div>
+</div>
