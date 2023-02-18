@@ -29,6 +29,13 @@ Amazon Simple Storage Service (Amazon S3) is an object storage service that offe
 
 > **_NOTE:_** Please make sure that you have your own Amazon S3 access key and secret key. For more information, please follow the instruction about using S3 from AWS [here](https://aws.amazon.com/s3/getting-started/).
 
+DevSearch uses [django-storages](https://django-storages.readthedocs.io/en/latest/) library to connect with Amazon S3. This library is a collection of custom storage backends for Django.
+
+## Database
+
+DevSearch uses [Psycopg](https://www.psycopg.org/docs/) as PostgreSQL adapter to ensure the performance. Documentation is included in the doc directory and is [available online](https://www.psycopg.org/docs/)).
+
+> **_NOTE:_** For any other resource (source code repository, bug tracker, mailing list) please check the [project homepage](https://www.psycopg.org/).
 
 ## Bugs and Issues
 
