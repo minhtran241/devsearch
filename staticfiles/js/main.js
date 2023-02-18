@@ -59,6 +59,12 @@ for (const tag of tags) {
 
 const popup = document.querySelector('.popupBox');
 const close = document.querySelector('.close');
+const popupBtn = document.querySelector('.popupBox__btn');
+
+const closePopup = () => {
+  popup.style.display = 'none';
+  localStorage.setItem('popup', 'seen');
+};
 
 if (localStorage.getItem('popup') != 'seen') {
   window.onload = () => {
@@ -66,7 +72,5 @@ if (localStorage.getItem('popup') != 'seen') {
   };
 }
 
-close.addEventListener('click', () => {
-  popup.style.display = 'none';
-  localStorage.setItem('popup', 'seen');
-});
+close.addEventListener('click', closePopup);
+popupBtn.addEventListener('click', closePopup);
