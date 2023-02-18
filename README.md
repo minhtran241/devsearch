@@ -1,8 +1,13 @@
 # DevSearch
 
-## Installation
+## About Us
 
-* Clone repo <https://github.com/minhtran241/devsearch>
+DevSearch is the place you can connect with excellent developers around the world and have a chance to know about their outstanding projects. This platform aims the create a strong community where you can show your work with the world and have chances to have jobs.
+
+If you are an employer, DevSearch will recommends to you the most outstanding developers in the field you need. This tool provides the most handful features which makes your searching become easier!
+
+## Get Started
+
 * Create a virtual environment and activate
 
 ```
