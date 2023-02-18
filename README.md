@@ -23,6 +23,13 @@ The `.env.dist` file describes the mandatory variables for the application, and 
 
 > **_NOTE:_** Please make sure that you have enough required variables in the `.env.dist` file and create your `.env` file before running the application.
 
+## Amazon S3
+
+Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance. You can use Amazon S3 to store and retrieve any amount of data at any time, from anywhere.
+
+> **_NOTE:_** Please make sure that you have your own Amazon S3 access key and secret key. For more information, please follow the instruction about using S3 from AWS [here](https://aws.amazon.com/s3/getting-started/).
+
+
 ## Bugs and Issues
 
 Have a bug or an issue with this template? [Open a new issue](https://github.com/minhtran241/devsearch/issues) here on GitHub.
