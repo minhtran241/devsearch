@@ -33,7 +33,7 @@ DevSearch uses [django-storages](https://django-storages.readthedocs.io/en/lates
 
 ## Database
 
-DevSearch uses [Psycopg](https://www.psycopg.org/docs/) as PostgreSQL adapter to ensure the performance. Documentation is included in the doc directory and is [available online](https://www.psycopg.org/docs/)).
+DevSearch uses [Psycopg](https://www.psycopg.org/docs/) as PostgreSQL adapter to ensure the performance. Documentation is included in the doc directory and is [available online](https://www.psycopg.org/docs/).
 
 > **_NOTE:_** For any other resource (source code repository, bug tracker, mailing list) please check the [project homepage](https://www.psycopg.org/).
 
