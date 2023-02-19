@@ -3,7 +3,7 @@
 	<ul class="container">
 		{% if queryset.has_previous %}
 		<li><a href="?page={{queryset.previous_page_number}}" class="btn page-link data-page="
-				{{queryset.previous_page_number}}"><i class="fa-solid fa-arrow-left-long"></i></a></li>
+				{{queryset.previous_page_number}}"><i class="fa-sharp fa-solid fa-backward-step"></i></a></li>
 		{% endif %}
 		{% for page in custom_range %}
 		{% if page == queryset.number %}
@@ -13,8 +13,7 @@
 		{% endif %}
 		{% endfor %}
 		{% if queryset.has_next %}
-		<li><a href="?page={{queryset.next_page_number}}" class="btn page-link" data-page="{{queryset.next_page_number}}"><i
-					class="fa-solid fa-arrow-right-long"></i></a></li>
+		<li><a href="?page={{queryset.next_page_number}}" class="btn page-link" data-page="{{queryset.next_page_number}}"><i class="fa-sharp fa-solid fa-forward-step"></i></a></li>
 		{% endif %}
 	</ul>
 </div>
